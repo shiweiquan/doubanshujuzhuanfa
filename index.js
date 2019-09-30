@@ -34,14 +34,13 @@ function getData (req, res, next) {
 	  let paramsStr = req.query || {};
 	  let str = '?';
 	  if(paramsStr !== {}){
-	    // console.log(paramsStr)
+	    console.log(paramsStr)
 	    for(let key in paramsStr){
 	      str += key + '='+ paramsStr[key] + '&'
 	    }
 
 	  }
 	  str = str.substr(0,str.length-1);
-	  console.log(str)
 	  console.log(req.path)
 	    // var url = 'https://douban-api.uieee.com/v2/movie/in_theaters?start=1&count=1';
 
@@ -54,13 +53,17 @@ function getData (req, res, next) {
         }
     });
 }
+
+
 router.get('/in_theaters', getData);
 router.get('/top250', getData);
 router.get('/coming_soon',getData);
 router.get('/subject/:id', getData);
+
+router.get('/new_movies', getData);
+
 app.use('/', router);
 
 app.listen(3006,function(){
 	console.log('Server is running on 3006 of port')
-
 })
